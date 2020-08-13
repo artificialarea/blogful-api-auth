@@ -7,7 +7,7 @@
 src: https://courses.thinkful.com/auth-jwt-v1/checkpoint/2
 
 starting branch: **`auth-starting-point`**
-
+finished branch: **`me-checkpoint-2`**
 
 <br />
 
