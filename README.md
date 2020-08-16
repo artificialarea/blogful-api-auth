@@ -6,16 +6,21 @@
 ### 1. Learning a new codebase 
 src: https://courses.thinkful.com/auth-jwt-v1/checkpoint/2
 
-starting branch: **`auth-starting-point`**
-finished branch: **`me-checkpoint-2`**
+branch: **`me-checkpoint-2`**  via `auth-starting-point`
 
 <br />
 
 ### 2. Protected endpoints 
 src: https://courses.thinkful.com/auth-jwt-v1/checkpoint/3
 
-starting branch: **`auth-starting-point`**
-finished branch: **`me-checkpoint-3`**
+branch: **`me-checkpoint-3`**
+
+<br />
+
+### 3. Data protection
+src: https://courses.thinkful.com/auth-jwt-v1/checkpoint/4
+
+branch: **`me-checkpoint-4`**
 
 <br />
 
