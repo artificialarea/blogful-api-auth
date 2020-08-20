@@ -230,7 +230,7 @@ function seedUsers(db, users) {
         ...user,
         password: bcrypt.hashSync(user.password, 1)
     }))
-    console.log('preppedUsers: ', preppedUsers)
+    //console.log('preppedUsers: ', preppedUsers)
     return db.into('blogful_users').insert(preppedUsers)
         .then(() =>
             // update the auto sequence to stay in sync

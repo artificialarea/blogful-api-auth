@@ -23,6 +23,13 @@ branch: **`me-checkpoint-4`**
 
 <br />
 
+### 4. Secure login
+src: https://courses.thinkful.com/auth-jwt-v1/checkpoint/5
+
+branch: **`me-checkpoint-5`**
+
+<br />
+
 
 ## Scripts
 
