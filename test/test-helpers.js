@@ -208,10 +208,10 @@ function cleanTables(db) {
     return db.transaction(trx =>
         trx.raw(
             `TRUNCATE
-        blogful_articles,
-        blogful_users,
-        blogful_comments
-      `
+            blogful_articles,
+            blogful_users,
+            blogful_comments
+            `
         )
             .then(() =>
                 Promise.all([
