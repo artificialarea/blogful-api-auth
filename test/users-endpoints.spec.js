@@ -137,15 +137,15 @@ describe.only('Users Endpoints', function () {
             });
         })
 
-        context.skip(`Happy path`, () => {
+        context(`Happy path`, () => {
             it('responds 201, serialized user, storing bcrypted password', () => {
                 const newUser = {
                     user_name: 'test user_name',
                     password: 'aaAA11!!',
-                    full_name: 'gest full_name',
+                    full_name: 'test full_name',
                 }
                 return supertest(app)
-                    .post('/api/usrs')
+                    .post('/api/users')
                     .send(newUser)
                     .expect(201)
                     .expect(res => {
@@ -155,8 +155,14 @@ describe.only('Users Endpoints', function () {
                         expect(res.body.nickname).to.eql('')
                         expect(res.body).to.not.have.property('password')
                         expect(res.headers.location).to.eql(`/api/users/${res.body.id}`)
+
+                        // TODO: solve timezone issue
+                        // although my postgresql.conf timezone is set to 'UTC'
+                        // actualDate stubbornly remains in PDT timezone ??? 
+                        // so forcing UTC timezone in actualDate for now until I can troubleshoot
                         const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
-                        const actualDate = new Date(res.body.date_created).toLocaleString()
+                        // const actualDate = new Date(res.body.date_created).toLocaleString() 
+                        const actualDate = new Date(res.body.date_created).toLocaleString('en', { timeZone: 'UTC' })
                         expect(actualDate).to.eql(expectedDate)
                     })
             })

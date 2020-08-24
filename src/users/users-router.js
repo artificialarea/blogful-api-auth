@@ -31,17 +31,16 @@ usersRouter
                 if (hasUserWithUserName)
                     return res.status(400).json({ error: `Username already taken` })
                 
-                
-                res.send('ok')
-                // res.status(201)
-                //     .location(path.posix.join(req.originalUrl, `/whatever`))
-                //     .json({
-                //         id: 'whatever',
-                //         user_name,
-                //         full_name,
-                //         nickname: nickname || '',
-                //         date_created: Date.now(),
-                //     })
+                // res.send('ok')
+                res.status(201)
+                    .location(path.posix.join(req.originalUrl, `/whatever`))
+                    .json({
+                        id: 'whatever',
+                        user_name,
+                        full_name,
+                        nickname: nickname || '',
+                        date_created: Date.now(),
+                    })
             })
             .catch(next)
 
