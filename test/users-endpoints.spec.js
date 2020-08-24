@@ -1,10 +1,11 @@
 /* eslint-disable indent */
 const knex = require('knex')
+const bcrypt = require('bcryptjs')
 const app = require('../src/app')
 const helpers = require('./test-helpers');
 const { expect } = require('chai');
 
-describe.only('Users Endpoints', function () {
+describe('Users Endpoints', function () {
 
     let db
 
@@ -139,6 +140,8 @@ describe.only('Users Endpoints', function () {
         })
 
         context(`Happy path`, () => {
+
+            // normally this would be broken up into numerous unit tests instead of chained together in one long test
             it('responds 201, serialized user, storing bcrypted password', () => {
                 const newUser = {
                     user_name: 'test user_name',
@@ -184,7 +187,11 @@ describe.only('Users Endpoints', function () {
                                 const actualDate = new Date(row.date_created).toLocaleString('en', { timeZone: 'UTC' })
                                 expect(actualDate).to.eql(expectedDate)
 
+                                return bcrypt.compare(newUser.password, row.password)
                             })        
+                            .then(compareMatch => {
+                                expect(compareMatch).to.be.true
+                            })
                     )
             })
         });

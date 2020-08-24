@@ -1,5 +1,6 @@
 /* eslint-disable indent */
 const xss = require('xss')
+const bcrypt = require('bcryptjs')
 
 // per http://regexr.com/5an6u
 const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]+/;
@@ -36,6 +37,10 @@ const UsersService = {
             return `Password must contain an uppercase, lowercase, number, and special character`
         }
         return null
+    },
+
+    hashPassword(password) {
+        return bcrypt.hash(password, 12)
     },
 
     serializeUser(user) {
