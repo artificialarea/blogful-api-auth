@@ -1,22 +1,22 @@
 /* eslint-disable indent */
 const knex = require('knex')
 const app = require('../src/app')
-const helpers = require('../test/test-helpers');
-const supertest = require('supertest');
+const helpers = require('./test-helpers');
 
-describe.only('Users Endpoints', () => {
+describe.only('Users Endpoints', function () {
 
     let db
 
     const { testUsers } = helpers.makeArticlesFixtures()
     const testUser = testUsers[0]
 
+
     before('make knex instance', () => {
         db = knex({
             client: 'pg',
             connection: process.env.TEST_DB_URL,
         })
-        app.set(db, 'db')
+        app.set('db', db)
     })
 
     after('disconnect from db', () =>  db.destroy())
@@ -26,6 +26,7 @@ describe.only('Users Endpoints', () => {
     afterEach('cleanup', () => helpers.cleanTables(db))
 
     describe(`POST /api/users`, () => {
+
         context(`User Validation`, () => {
             beforeEach(`insert users`, () => 
                 helpers.seedUsers(
@@ -135,5 +136,30 @@ describe.only('Users Endpoints', () => {
                     .expect(400, { error: 'Username already taken' })
             });
         })
+
+        context.skip(`Happy path`, () => {
+            it('responds 201, serialized user, storing bcrypted password', () => {
+                const newUser = {
+                    user_name: 'test user_name',
+                    password: 'aaAA11!!',
+                    full_name: 'gest full_name',
+                }
+                return supertest(app)
+                    .post('/api/usrs')
+                    .send(newUser)
+                    .expect(201)
+                    .expect(res => {
+                        expect(res.body).to.have.property('id')
+                        expect(res.body.user_name).to.eql(newUser.user_name)
+                        expect(res.body.full_name).to.eql(newUser.full_name)
+                        expect(res.body.nickname).to.eql('')
+                        expect(res.body).to.not.have.property('password')
+                        expect(res.headers.location).to.eql(`/api/users/${res.body.id}`)
+                        const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
+                        const actualDate = new Date(res.body.date_created).toLocaleString()
+                        expect(actualDate).to.eql(expectedDate)
+                    })
+            })
+        });
     })
 });
