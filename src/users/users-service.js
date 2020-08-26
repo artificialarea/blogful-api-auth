@@ -19,7 +19,9 @@ const UsersService = {
             .insert(newUser)
             .into('blogful_users')
             .returning('*')
-            .then(([user]) => user)     // QUESTION: Why `[]` syntax required for `[user]`?
+            .then(([user]) => user)     
+            // QUESTION: Why `[]` syntax required for `[user]`?
+            // ANSWER?: it's kinda like a spread operator, extracting the values out of the object, so it's no longer an object, per se.
     },
 
     validatePassword(password) {

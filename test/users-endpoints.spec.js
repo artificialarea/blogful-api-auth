@@ -3,9 +3,8 @@ const knex = require('knex')
 const bcrypt = require('bcryptjs')
 const app = require('../src/app')
 const helpers = require('./test-helpers');
-const { expect } = require('chai');
 
-describe('Users Endpoints', function () {
+describe.only('Users Endpoints', function () {
 
     let db
 
@@ -165,6 +164,7 @@ describe('Users Endpoints', function () {
                         // although my postgresql.conf timezone is set to 'UTC'
                         // actualDate stubbornly remains in PDT timezone ??? 
                         // so forcing UTC timezone in actualDate for now until I can troubleshoot
+                        // ODDLY, don't have same issue in 'thingful-server' app???
                         const expectedDate = new Date().toLocaleString('en', { timeZone: 'UTC' })
                         // const actualDate = new Date(res.body.date_created).toLocaleString() 
                         const actualDate = new Date(res.body.date_created).toLocaleString('en', { timeZone: 'UTC' })
