@@ -52,7 +52,7 @@ branch: **`me-checkpoint-6`**
 ### 7. Session Storage and Expiry Time
 src: https://courses.thinkful.com/auth-jwt-v1/checkpoint/7
 
-branch: **`me-checkpoint-7`**
+branch: **`me-checkpoint-7`** changes made: https://github.com/artificialarea/blogful-api-auth/compare/me-checkpoint-6...artificialarea:me-checkpoint-7
 
 <br />
 
