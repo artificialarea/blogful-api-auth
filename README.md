@@ -35,6 +35,18 @@ src: https://courses.thinkful.com/auth-jwt-v1/checkpoint/6
 
 branch: **`me-checkpoint-6`**
 
+**NOTE/TODO:** Periodically this `POST /api/auth/login` 200 test fails with a 400, if I repeatedly run test. WHY?
+```
+    Auth Endpoints
+        POST /api/auth/login
+      1) responds 200 and JWT auth token using secret when valid credentials
+
+1) Auth Endpoints
+       POST /api/auth/login
+            responds 200 and JWT auth token using secret when valid credentials:
+   Error: expected 200 "OK", got 400 "Bad Request"
+```
+
 <br />
 
 ### 7. Session Storage and Expiry Time

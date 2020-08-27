@@ -3,6 +3,7 @@
 const knex = require('knex');
 const app = require('../src/app');
 const helpers = require('./test-helpers');
+const supertest = require('supertest');
 
 describe('Protected Endpoints', () => {
 
@@ -52,6 +53,11 @@ describe('Protected Endpoints', () => {
         {
             name: 'POST /api/comments',
             path: '/api/comments',
+            method: supertest(app).post,
+        },
+        {
+            name: 'POST /api/auth/refresh',
+            path: '/api/auth/refresh',
             method: supertest(app).post,
         },
     ];
