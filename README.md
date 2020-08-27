@@ -37,6 +37,13 @@ branch: **`me-checkpoint-6`**
 
 <br />
 
+### 7. Session Storage and Expiry Time
+src: https://courses.thinkful.com/auth-jwt-v1/checkpoint/7
+
+branch: **`me-checkpoint-7`**
+
+<br />
+
 
 ## Scripts
 
